@@ -1,8 +1,10 @@
-from matplotlib.pyplot as plt
+#from matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import joblib
-from matplotlib.colors import listedColormap
+from matplotlib.colors import ListedColormap
+
 import os
 plt.style.use("fivethirtyeight")
 

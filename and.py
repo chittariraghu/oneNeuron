@@ -1,5 +1,8 @@
 from utils.model import Perceptron
 from utils.all_utils import prepare_data
+from utils.all_utils import save_model
+from utils.all_utils import save_plot
+#from utils.all_utils import _plot_decision_regions
 import pandas as pd
 import numpy as numpy
 
