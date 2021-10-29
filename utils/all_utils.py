@@ -4,11 +4,22 @@ import numpy as np
 import pandas as pd
 import joblib
 from matplotlib.colors import ListedColormap
+import logging
 
 import os
 plt.style.use("fivethirtyeight")
 
 def prepare_data(df):
+  """
+  It is used to separate the dependent and independent features
+
+  Args:
+      df (pd.DataFrame): Its the pandas dataset
+
+  Returns:
+      tuple: it returns the tuples of dependent and independent variables
+  """
+  logging.info("preparing the data by segregating the dependent and independent variables")
   X = df.drop("y", axis=1)
   #hiiii
 
@@ -17,10 +28,12 @@ def prepare_data(df):
   return X, y
 
 def save_model(model, filename):
+  logging.info("saving the trained model")
   model_dir = "models"
   os.makedirs(model_dir, exist_ok=True) # ONLY CREATE IF MODEL_DIR DOESN"T EXISTS
   filePath = os.path.join(model_dir, filename) # model/filename
   joblib.dump(model, filePath)
+  logging.info("saved the trained model {filepath}")
 
 def save_plot(df, file_name, model):
   def _create_base_plot(df):
@@ -42,8 +55,7 @@ def save_plot(df, file_name, model):
 
     xx1, xx2 = np.meshgrid(np.arange(x1_min, x1_max, resolution), 
                            np.arange(x2_min, x2_max, resolution))
-    print(xx1)
-    print(xx1.ravel())
+
     Z = classfier.predict(np.array([xx1.ravel(), xx2.ravel()]).T)
     Z = Z.reshape(xx1.shape)
     plt.contourf(xx1, xx2, Z, alpha=0.2, cmap=cmap)
@@ -63,3 +75,4 @@ def save_plot(df, file_name, model):
   os.makedirs(plot_dir, exist_ok=True) # ONLY CREATE IF MODEL_DIR DOESN"T EXISTS
   plotPath = os.path.join(plot_dir, file_name) # model/filename
   plt.savefig(plotPath)
+  logging.info(f"saving the plot at {plotPath}")
