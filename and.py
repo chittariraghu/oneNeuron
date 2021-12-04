@@ -31,6 +31,7 @@ def main(data,eta,epochs,filename,plotFileName):
     save_model(model,filename=filename)
     save_plot(df,plotFileName,model)
 if __name__=='__main__':
+    
     AND = {
         "x1": [0,0,1,1],
         "x2": [0,1,0,1],
@@ -40,6 +41,7 @@ if __name__=='__main__':
     EPOCHS = 100
     try:
         logging.info(">>> Starting Training>>>")
+        print("Raghu, you are in try block!")
         main(data=AND,eta=ETA,epochs=EPOCHS,filename="and.model",plotFileName='and.png')
         logging.info(">>> Starting Training done successfully>>>\n")
     except Exception as e:
